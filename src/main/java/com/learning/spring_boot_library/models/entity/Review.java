@@ -2,12 +2,14 @@ package com.learning.spring_boot_library.models.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
 @Entity
 @Table(name = "review")
 @Data
+@NoArgsConstructor
 public class Review {
 
     @Id
