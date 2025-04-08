@@ -65,6 +65,12 @@
 			<artifactId>flyway-mysql</artifactId>
 			<version>9.22.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.okta.spring/okta-spring-boot-starter -->
+		<dependency>
+			<groupId>com.okta.spring</groupId>
+			<artifactId>okta-spring-boot-starter</artifactId>
+			<version>2.1.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
