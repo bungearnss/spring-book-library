@@ -2,10 +2,12 @@ package com.learning.spring_boot_library.models.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "book")
 @Data
+@NoArgsConstructor
 public class Book {
 
     @Id
