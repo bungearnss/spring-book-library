@@ -22,6 +22,24 @@ public class BookController {
         Pageable pageable = PageRequest.of(page, size);
         return bookService.getAllBooks(pageable);
     }
+
+    @PutMapping("/secure/checkout")
+    public Book checkoutBook(@RequestParam Long bookId) throws Exception {
+        String userEmail = "testemail@email.com";
+        return  bookService.checkoutBook(userEmail, bookId);
+    }
+
+    @GetMapping("/secure/isCheckout/byuser")
+    public Boolean checkoutBookByUser(@RequestParam Long bookId){
+        String userEmail = "testemail@email.com";
+        return bookService.checkoutBookByUser(userEmail, bookId);
+    }
+
+    @GetMapping("/secure/currentloans/count")
+    public int currentLoansCount(){
+        String userEmail = "testemail@email.com";
+        return bookService.currentLoansCount(userEmail);
+    }
 }
 
 
