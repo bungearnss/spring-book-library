@@ -120,4 +120,21 @@ public class BookService {
                 .setImg(book.getImg());
         historyRepository.save(history);
     }
+
+    public void renewLoan(String userEmail, Long bookId) throws Exception {
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+
+        if (validateCheckout == null){
+            throw new Exception("Book doesn't exist or already checked out by user");
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = sdf.parse(validateCheckout.getReturnDate());
+        Date d2 = sdf.parse(LocalDate.now().toString());
+
+        if (d1.compareTo(d2) > 0 || d1.compareTo(d2) == 0){
+            validateCheckout.setReturnDate(LocalDate.now().plusDays(7).toString());
+            checkoutRepository.save(validateCheckout);
+        }
+    }
 }
