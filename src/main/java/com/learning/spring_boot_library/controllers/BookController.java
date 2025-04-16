@@ -1,6 +1,7 @@
 package com.learning.spring_boot_library.controllers;
 
 import com.learning.spring_boot_library.models.entity.Book;
+import com.learning.spring_boot_library.models.response.ShelfCurrentLoansResponse;
 import com.learning.spring_boot_library.services.BookService;
 import com.learning.spring_boot_library.utils.ExtractJWT;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -38,9 +41,15 @@ public class BookController {
         return bookService.checkoutBookByUser(userEmail, bookId);
     }
 
+    @GetMapping("/secure/currentloans")
+    public List<ShelfCurrentLoansResponse> currentLoans(@RequestHeader(value = "Authorization") String token) throws Exception {
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        return bookService.currentLoans(userEmail);
+    }
+
     @GetMapping("/secure/currentloans/count")
     public int currentLoansCount(@RequestHeader(value = "Authorization") String token){
-        String userEmail = "testemail@email.com";
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         return bookService.currentLoansCount(userEmail);
     }
 }
