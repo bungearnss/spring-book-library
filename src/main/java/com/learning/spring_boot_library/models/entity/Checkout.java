@@ -3,19 +3,14 @@ package com.learning.spring_boot_library.models.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 @Entity
 @Table(name = "checkout")
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 public class Checkout {
-
-    public Checkout(String userEmail, String checkoutDate, String returnDate, Long bookId) {
-        this.userEmail = userEmail;
-        this.checkoutDate = checkoutDate;
-        this.returnDate = returnDate;
-        this.bookId = bookId;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
