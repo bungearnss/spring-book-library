@@ -1,6 +1,7 @@
 package com.learning.spring_boot_library.configs;
 
 import com.learning.spring_boot_library.models.entity.Book;
+import com.learning.spring_boot_library.models.entity.Message;
 import com.learning.spring_boot_library.models.entity.Review;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +27,11 @@ public class RestRepositoryConfig implements RepositoryRestConfigurer {
 
         config.exposeIdsFor(Book.class);
         config.exposeIdsFor(Review.class);
+        config.exposeIdsFor(Message.class);
 
         disableHttpMethods(Book.class, config, theUnsupportedActions);
         disableHttpMethods(Review.class, config, theUnsupportedActions);
+        disableHttpMethods(Message.class, config, theUnsupportedActions);
 
         /* Configure CORS Mapping */
         cors.addMapping(config.getBasePath() + "/**")
